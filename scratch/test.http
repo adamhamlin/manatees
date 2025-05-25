@@ -1,0 +1,88 @@
+# Vars
+@gameId = fartyfarts
+@gameAdminId = player1
+
+###
+
+# @name health
+GET {{host}}/health
+Content-Type: application/json
+
+###
+
+# @name getGames
+GET {{host}}/game
+Content-Type: application/json
+x-user-id: player1
+
+###
+
+# @name createOrJoinGame
+WS {{wsHost}}/game/{{gameId}}
+Content-Type: application/json
+#x-user-id: {{gameAdminId}}
+#x-user-id: player2
+#x-user-id: player3
+
+{{@streaming
+  async function writeStream(){
+    await sleep(500);
+    await sleep(500);
+  }
+  exports.waitPromise = writeStream();
+}}
+
+    # $requestClient.send({
+    #   "event": "ping",
+    #   "reqid": 45,
+    #   "message": "Hi from the client!"
+    # });
+
+###
+
+# @name leaveGame
+PUT {{host}}/game/{{gameId}}/leave
+Content-Type: application/json
+x-user-id: {{gameAdminId}}
+
+{}
+
+###
+
+# @name updateGameConfig
+PATCH {{host}}/game/{{gameId}}/config
+Content-Type: application/json
+x-user-id: {{gameAdminId}}
+
+{
+  "updates": {
+    "deckIds": [1,2]
+  }
+}
+
+###
+
+# @name addRandoPlayer
+PUT {{host}}/game/{{gameId}}/player/rando1
+Content-Type: application/json
+x-user-id: {{gameAdminId}}
+
+{}
+
+###
+
+# @name removePlayer
+DELETE {{host}}/game/{{gameId}}/player/rando1
+Content-Type: application/json
+x-user-id: {{gameAdminId}}
+
+{}
+
+###
+
+# @name startGame
+PUT {{host}}/game/{{gameId}}/start
+Content-Type: application/json
+x-user-id: {{gameAdminId}}
+
+{}

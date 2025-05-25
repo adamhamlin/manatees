@@ -1,0 +1,15 @@
+{
+    "rest-client.environmentVariables": {
+        "$shared": {
+            "host": "http://localhost:3456",
+            "wsHost": "ws://localhost:3456"
+        }
+    },
+    "httpyac.environmentVariables": {
+        "$shared": {
+            "host": "http://localhost:3456",
+            "wsHost": "ws://localhost:3456"
+        }
+    },
+    "editor.tabSize": 2
+}

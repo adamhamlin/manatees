@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator zod {
+  provider = "zod-prisma-types"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Deck {
+  id         Int         @id @default(autoincrement())
+  name       String      @unique
+  watermark  String
+  blackCards BlackCard[]
+  whiteCards WhiteCard[]
+
+  @@map("deck")
+}
+
+model BlackCard {
+  id        Int    @id @default(autoincrement())
+  content   String @unique
+  pickCount Int
+  deckId    Int
+  deck      Deck   @relation(fields: [deckId], references: [id], onDelete: Cascade)
+
+  @@map("black_card")
+}
+
+model WhiteCard {
+  id      Int    @id @default(autoincrement())
+  content String @unique
+  deckId  Int
+  deck    Deck   @relation(fields: [deckId], references: [id], onDelete: Cascade)
+
+  @@map("white_card")
+}

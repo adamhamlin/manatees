@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:16
+    container_name: manatees-db
+    environment:
+      POSTGRES_USER: fallon
+      POSTGRES_PASSWORD: wearefriends
+      APP_DB: manatees
+      APP_SCHEMA: app
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres-init.sh:/docker-entrypoint-initdb.d/init.sh
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      start_period: 30s
+      start_interval: 1s
+      interval: 30s
+      timeout: 5s
+      retries: 5
+volumes:
+  pgdata:

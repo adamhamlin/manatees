@@ -1,0 +1,66 @@
+{
+  "name": "manatees",
+  "version": "0.1.0",
+  "description": "WIP",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamhamlin/manatees.git"
+  },
+  "author": "Adam C Hamlin <achamlin@gmail.com>",
+  "scripts": {
+    "start": "ts-node src/entrypoint.ts",
+    "prepare": "husky && npm run compile",
+    "_lint": "eslint --fix",
+    "_lint:check": "eslint",
+    "_format": " prettier --write --ignore-unknown",
+    "_format:check": "prettier --check --ignore-unknown",
+    "fix": "npm run _lint . && npm run _format .",
+    "check": "npm run _lint:check . && npm run _format:check .",
+    "compile": "tsc -p ./",
+    "watch": "npm run compile -- -watch",
+    "test": "jest",
+    "pretest:ci": "npm run check",
+    "test:ci": "npm test"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed/index.ts"
+  },
+  "lint-staged": {
+    "*.ts": "npm run _lint -- --cache",
+    "*": "npm run _format"
+  },
+  "dependencies": {
+    "@fastify/sensible": "^6.0.3",
+    "@fastify/websocket": "^11.0.2",
+    "@prisma/client": "^6.4.1",
+    "@types/stream-chain": "^2.1.0",
+    "@types/stream-json": "^1.7.8",
+    "axios": "^1.9.0",
+    "deep-equality-data-structures": "^1.5.1",
+    "fastify-type-provider-zod": "^4.0.2",
+    "radashi": "^12.3.4",
+    "stream-chain": "^3.4.0",
+    "stream-json": "^1.9.1",
+    "super-simple-fastify-server": "^1.0.0",
+    "ts-pattern": "^5.6.2",
+    "zod": "^3.25.7",
+    "zod-prisma-types": "^3.2.4"
+  },
+  "devDependencies": {
+    "@adamhamlin/eslint-config": "^1.4.1",
+    "@tsconfig/recommended": "^1.0.8",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.13.4",
+    "@types/ws": "^8.5.14",
+    "fastify": "^5.2.1",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.4.3",
+    "prisma": "^6.3.1",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
