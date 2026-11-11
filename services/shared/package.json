@@ -1,0 +1,28 @@
+{
+  "name": "@manatees/shared",
+  "version": "0.1.0",
+  "private": true,
+  "exports": {
+    "./types": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./src/types/index.ts",
+      "require": "./dist/types/index.js"
+    },
+    "./utils/*": {
+      "types": "./dist/utils/*.d.ts",
+      "import": "./src/utils/*.ts",
+      "require": "./dist/utils/*.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "npm run build"
+  },
+  "dependencies": {
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.0",
+    "typescript": "^5.9.3"
+  }
+}

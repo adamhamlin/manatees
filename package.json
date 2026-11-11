@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "name": "manatees",
+  "version": "0.1.0",
+  "description": "WIP",
+  "main": "index.js",
+  "workspaces": [
+    "services/*"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamhamlin/manatees.git"
+  },
+  "author": "Adam C Hamlin <achamlin@gmail.com>",
+  "scripts": {
+    "prepare": "husky",
+    "_lint": "eslint --fix",
+    "_lint:check": "eslint",
+    "_format": " prettier --write --ignore-unknown",
+    "_format:check": "prettier --check --ignore-unknown",
+    "fix": "npm run _format . && npm run _lint .",
+    "check": "npm run _lint:check . && npm run _format:check ."
+  },
+  "lint-staged": {
+    "*.ts": "npm run _lint -- --cache",
+    "*": "npm run _format"
+  },
+  "devDependencies": {
+    "@adamhamlin/eslint-config": "^1.4.1",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

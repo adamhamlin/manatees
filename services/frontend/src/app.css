@@ -1,0 +1,20 @@
+:root {
+  --color-primary: #0e7490;
+  --color-primary-dark: #155e75;
+  --color-primary-soft: #ecfeff;
+  --color-primary-border: #67e8f9;
+
+  --color-warning: #b45309;
+  --color-warning-dark: #78350f;
+  --color-warning-soft: #fef3c7;
+  --color-warning-soft-hover: #fde68a;
+  --color-warning-bg: #fffbeb;
+  --color-warning-border: #fcd34d;
+}
+
+/* Padding and border count toward an element's width, so `width: 100%` never overflows its container. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
