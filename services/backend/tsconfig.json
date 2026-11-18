@@ -1,0 +1,20 @@
+{
+  "extends": "@tsconfig/recommended/tsconfig.json",
+  "compilerOptions": {
+    //"traceResolution": true,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "outDir": "./dist",
+    "paths": {
+      "@game/*": ["./src/game/*"],
+      "@auth/*": ["./src/auth/*"],
+      "@user/*": ["./src/user/*"],
+      "@cards/*": ["./src/cards/*"],
+      "@repository/*": ["./src/repository/*"],
+      "@config/*": ["./src/config/*"],
+      "@common/*": ["./src/common/*"],
+      "@frontend/*": ["./src/frontend/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist/**/*"]
+}

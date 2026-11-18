@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator zod {
+  provider = "zod-prisma-types"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum DeckType {
+  official
+  custom
+
+  @@map("deck_type")
+}
+
+model Deck {
+  id         Int         @id @default(autoincrement())
+  name       String      @unique
+  watermark  String      @unique
+  type       DeckType
+  createdBy  String?     @db.Uuid
+  creator    User?       @relation("DeckCreator", fields: [createdBy], references: [id], onDelete: SetNull)
+  blackCards BlackCard[]
+  whiteCards WhiteCard[]
+
+  @@map("deck")
+}
+
+model BlackCard {
+  id        Int    @id @default(autoincrement())
+  content   String
+  pickCount Int
+  deckId    Int
+  deck      Deck   @relation(fields: [deckId], references: [id], onDelete: Cascade)
+
+  @@unique([deckId, content])
+
+  @@map("black_card")
+}
+
+model WhiteCard {
+  id      Int    @id @default(autoincrement())
+  content String
+  deckId  Int
+  deck    Deck   @relation(fields: [deckId], references: [id], onDelete: Cascade)
+
+  @@unique([deckId, content])
+
+  @@map("white_card")
+}
+
+model User {
+  id          String   @id @db.Uuid
+  googleSub   String   @unique
+  email       String
+  name        String
+  displayName String?  @unique @db.Citext
+  createdAt   DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt   DateTime @updatedAt @db.Timestamptz(3)
+  createdDecks Deck[]  @relation("DeckCreator")
+
+  @@map("user")
+}
+
+model InvalidatedSession {
+  tokenHash String   @id @map("token_hash")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  @@map("invalidated_sessions")
+  // This is a hack to trick prisma into ignoring our custom pg_ttl_index that is generated with
+  // the same name. We'll drop it before using the extension; see the associated migration file
+  @@index([createdAt], map: "idx_ttl_invalidated_sessions_created_at")
+}
