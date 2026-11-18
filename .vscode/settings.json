@@ -1,0 +1,27 @@
+{
+  "rest-client.environmentVariables": {
+    "$shared": {
+      "host": "http://localhost:3456",
+      "wsHost": "ws://localhost:3456"
+    }
+  },
+  "rest-client.previewOption": "exchange", // for showing full request/response
+  "httpyac.environmentVariables": {
+    "$shared": {
+      "host": "http://localhost:3456",
+      "wsHost": "ws://localhost:3456"
+    }
+  },
+  "httpyac.responseViewMode": "reuse",
+  "editor.tabSize": 2,
+  "prisma.pinToPrisma6": true,
+  "chat.tools.terminal.autoApprove": {
+    "/^just check$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "npx svelte-check": true,
+    "npm run build": true
+  },
+  "js/ts.tsdk.path": "node_modules/typescript/lib"
+}

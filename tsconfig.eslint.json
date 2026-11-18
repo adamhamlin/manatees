@@ -1,0 +1,19 @@
+{
+  "extends": "./services/backend/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@game/*": ["./services/backend/src/game/*"],
+      "@auth/*": ["./services/backend/src/auth/*"],
+      "@user/*": ["./services/backend/src/user/*"],
+      "@cards/*": ["./services/backend/src/cards/*"],
+      "@repository/*": ["./services/backend/src/repository/*"],
+      "@config/*": ["./services/backend/src/config/*"],
+      "@common/*": ["./services/backend/src/common/*"],
+      "@frontend/*": ["./services/backend/src/frontend/*"],
+      "$lib/*": ["./services/frontend/src/lib/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.js"],
+  "exclude": ["node_modules", "**/dist"]
+}

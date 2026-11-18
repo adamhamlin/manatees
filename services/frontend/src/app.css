@@ -1,0 +1,46 @@
+@import 'tailwindcss/theme';
+@plugin "flowbite/plugin";
+@source "../../../node_modules/flowbite-svelte/dist";
+@import 'tailwindcss/utilities';
+
+:root {
+  --color-primary: #0e7490;
+  --color-primary-dark: #155e75;
+  --color-primary-soft: #ecfeff;
+  --color-primary-border: #67e8f9;
+
+  --color-warning: #b45309;
+  --color-warning-dark: #78350f;
+  --color-warning-soft: #fef3c7;
+  --color-warning-soft-hover: #fde68a;
+  --color-warning-bg: #fffbeb;
+  --color-warning-border: #fcd34d;
+}
+
+/* Padding and border count toward an element's width, so `width: 100%` never overflows its container. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  background: #e8eff7;
+}
+
+.login-page {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: calc(100dvh - 70px);
+  padding: 2rem;
+}
+
+.login-page > .login-panel {
+  justify-self: center;
+  align-self: center;
+  width: min(100%, 28rem);
+  margin-inline: auto;
+}

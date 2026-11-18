@@ -1,0 +1,7 @@
+# Ignore artifacts:
+dist
+coverage
+**/.svelte-kit
+
+# Ignore changelog since auto-updated by standard-version
+CHANGELOG.md

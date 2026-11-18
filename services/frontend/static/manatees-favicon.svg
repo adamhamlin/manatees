@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <g transform="translate(300 300) scale(3.35) translate(-276 -224)">
+    <path d="M225 155H327Q349 155 349 177V230Q349 293 286 293H225Q203 293 203 271V177Q203 155 225 155Z" fill="none" stroke="#17677f" stroke-width="10"/>
+    <text x="276" y="264" fill="#17677f" font-family="Arial, Helvetica, sans-serif" font-size="118" font-weight="800" text-anchor="middle">M</text>
+  </g>
+</svg>
